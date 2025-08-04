@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本的なCustom Element</title>
+</head>
+
+<body>
+    <h1>基本的なCustom Element</h1>
+
+    <p>以下は独自のHTML要素として定義されたCustom Elementsです：</p>
+
+    <my-greeting name="太郎"></my-greeting>
+    <my-greeting name="花子"></my-greeting>
+    <my-greeting></my-greeting>
+
+    <h2>属性を動的に変更</h2>
+    <my-greeting id="dynamic-greeting" name="初期値"></my-greeting>
+    <button onclick="changeName()">名前を変更</button>
+
+    <script>
+        // 1.Custom Elementを定義する
+
+        /*
+         * 標準のHTMLElementを継承したクラス
+         */
+        class MyGreeting extends HTMLElement {
+            constructor() {
+                super();
+                this.render();
+            }
+
+            /* 以下で要素の機能を定義する */
+
+            // 要素の初期表示を設定
+            render() {
+                const name = this.getAttribute('name') || 'ゲスト';
+                this.innerHTML = `
+                    <div style="padding: 15px; border: 2px solid #4CAF50; margin: 10px; border-radius: 8px; background-color: #f9f9f9;">
+                        <p style="margin: 0; font-size: 1.1em;">こんにちは、<strong>${name}</strong>さん！</p>
+                        <small style="color: #666;">これは基本的なCustom Elementです</small>
+                    </div>
+                `;
+            }
+
+            // 監視する属性を定義
+            static get observedAttributes() {
+                return ['name'];
+            }
+
+            // 属性が変更されたときの処理
+            // 値が変わったときにも動的に表示を更新できる
+            attributeChangedCallback(name, oldValue, newValue) {
+                if (name === 'name') this.render();
+            }
+
+            // DOMに追加されたときに呼ばれる
+            connectedCallback() {
+                console.log('my-greeting要素がDOMに追加されました');
+            }
+
+            // DOMから削除されたときに呼ばれる
+            disconnectedCallback() {
+                console.log('my-greeting要素がDOMから削除されました');
+            }
+        }
+
+        // 2. Custom Elementを登録する
+        customElements.define('my-greeting', MyGreeting);
+
+        /* 
+         * (デモ用) 動的に属性を変更するための関数
+         * ボタンをクリックすると名前がランダムに変わる
+         */
+        function changeName() {
+            const element = document.getElementById('dynamic-greeting');
+            const names = ['山田太郎', '佐藤花子', '田中次郎', '鈴木美咲'];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            element.setAttribute('name', randomName);
+        }
+    </script>
+</body>
+
+</html>

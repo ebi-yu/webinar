@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow DOM - スクリプトのカプセル化の例</title>
+</head>
+
+<body>
+    <h1>Shadow DOM - スクリプトのカプセル化の例</h1>
+
+    <div style="padding: 10px; margin-bottom: 5px; border: 1px solid red; background-color: #ffe6e6;">
+        外部のメッセージ: <span id="text">初期値</span>
+    </div>
+    <div style="padding: 10px; margin-bottom: 5px;  border: 1px solid palevioletred; background-color: #ffe6ff;">
+        外部のメッセージ2: <span id="text2">初期値</span>
+    </div>
+
+
+    <h2>Shadow DOM内 (mode: 'open')</h2>
+    <my-shadow-component></my-shadow-component>
+
+    <h2>Shadow DOM内 (mode: 'closed')</h2>
+    <my-closed-shadow-component></my-closed-shadow-component>
+
+    <button onclick="updateMessage()">通常DOMのメッセージを変更</button>
+    <button onclick="updateMessageWithShadow()">Open Shadow DOM内のメッセージを変更</button>
+    <button onclick="updateClosedShadow()">Closed Shadow DOM内のメッセージを変更（失敗例）</button>
+
+
+    <script>
+
+        class MyShadowComponent extends HTMLElement {
+            constructor() {
+                super();
+
+                // Shadow DOMを作成（カプセル化される）
+                this.attachShadow({ mode: 'open' });
+
+                this.shadowRoot.innerHTML = `
+                    <div id="message" style="padding: 10px; border: 1px solid blue; background-color: #e6f3ff; margin-bottom: 5px;">
+                        Shadow DOMのメッセージ: <span id="text">初期値</span>
+                    </div>
+                `;
+            }
+        }
+
+        // Closed Shadow DOMを使用するCustom Element
+        class MyClosedShadowComponent extends HTMLElement {
+            constructor() {
+                super();
+
+                // mode: 'closed' で真のカプセル化（外部からアクセス不可）
+                const shadowRoot = this.attachShadow({ mode: 'closed' });
+
+                shadowRoot.innerHTML = `
+                    <div id="message" style="padding: 10px; border: 1px solid green; background-color: #e6ffe6; margin-bottom: 50px;">
+                        Closed Shadow DOMのメッセージ: <span id="text">初期値</span>
+                    </div>
+                `;
+            }
+        }
+
+
+        // 通常のDOM内のメッセージを更新する関数
+        function updateMessage() {
+            // shadow Rootを指定しないと、shadow DOM内の要素にはアクセスできない。
+            document.querySelectorAll('span').forEach(element => {
+                element.textContent = "外部から更新: " + new Date().getSeconds();
+            });
+        }
+
+        // Shadow DOM内のメッセージを更新する関数
+        function updateMessageWithShadow() {
+            // shadow Rootを指定すると、shadow DOM内の要素にアクセスできる。
+            const shadowComponent = document.querySelector('my-shadow-component');
+            if (shadowComponent && shadowComponent.shadowRoot) {
+                const spanElements = shadowComponent.shadowRoot.querySelectorAll('span');
+                spanElements.forEach(spanElement => {
+                    spanElement.textContent = "外部からShadow DOMを更新: " + new Date().getSeconds();
+                });
+            }
+        }
+
+
+        function updateClosedShadow() {
+            // Closed Shadow DOM: 外部からアクセス不可（失敗例）
+            const closedComponent = document.querySelector('my-closed-shadow-component');
+
+            console.log('Closed Component:', closedComponent);
+            console.log('shadowRoot:', closedComponent.shadowRoot); // null になる
+
+            if (closedComponent && closedComponent.shadowRoot) {
+                const spanElement = closedComponent.shadowRoot.querySelector('span');
+                if (spanElement) {
+                    spanElement.textContent = "外部からClosed Shadow DOMを更新: " + new Date().getSeconds();
+                }
+            } else {
+                console.error('Closed Shadow DOMにはアクセスできません');
+            }
+        }
+
+
+        customElements.define('my-shadow-component', MyShadowComponent);
+        customElements.define('my-closed-shadow-component', MyClosedShadowComponent);
+    </script>
+</body>
+
+</html>

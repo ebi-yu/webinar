@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow DOM基本例</title>
+    <style>
+        /* グローバルスタイル（Shadow DOM内には影響しない） */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        p {
+            color: red;
+            font-size: 18px;
+        }
+
+        .highlight {
+            background-color: yellow;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Shadow DOM基本例</h1>
+
+    <p class="highlight">これは通常のDOM要素です。グローバルスタイルが適用されています。</p>
+
+    <h2>Shadow DOMの例</h2>
+    <p>以下のCustom ElementはShadow DOMを使用しているため、外部のスタイルの影響を受けません：</p>
+
+    <!-- Shadow DOMを持つCustom Element -->
+    <my-isolated-component></my-isolated-component>
+
+    <p class="highlight">再び通常のDOM要素です。グローバルスタイルが適用されています。</p>
+
+    <h2>Shadow DOMなしとの比較</h2>
+    <p>比較のため、Shadow DOMを使わないCustom Elementも配置します：</p>
+
+    <!-- Shadow DOMを使わないCustom Element -->
+    <my-normal-component></my-normal-component>
+
+    <script>
+        // Shadow DOMを使用するCustom Element
+        class MyIsolatedComponent extends HTMLElement {
+            constructor() {
+                super();
+
+                // Shadow DOMを作成（カプセル化される）
+                this.attachShadow({ mode: 'open' });
+
+                // Shadow DOM内にスタイルとコンテンツを設定
+                this.shadowRoot.innerHTML = `
+                    <style>
+                        /* このスタイルはShadow DOM内でのみ有効 */
+                        p {
+                            color: blue;
+                            font-size: 16px;
+                            border: 2px solid blue;
+                            padding: 15px;
+                            margin: 10px 0;
+                            background-color: #e8f4f8;
+                        }
+                        
+                        .highlight {
+                            background-color: lightgreen;
+                            padding: 8px;
+                            border-radius: 4px;
+                        }
+                        
+                        .container {
+                            border: 3px dashed #666;
+                            padding: 20px;
+                            background-color: white;
+                            margin: 10px 0;
+                        }
+                    </style>
+                    
+                    <div class="container">
+                        <h3>Shadow DOM内のコンテンツ</h3>
+                        <p class="highlight">このテキストは外部のスタイルの影響を受けません。</p>
+                        <p>Shadow DOM内では独自のスタイルが適用されています。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Shadow DOMを使わないCustom Element（比較用）
+        class MyNormalComponent extends HTMLElement {
+            constructor() {
+                super();
+
+                // 通常のDOM（Shadow DOMなし）にコンテンツを設定
+                this.innerHTML = `
+                    <div style="border: 3px dashed #999; padding: 20px; background-color: white; margin: 10px 0;">
+                        <h3>通常のDOM内のコンテンツ</h3>
+                        <p class="highlight">このテキストは外部のスタイル（赤色・黄色背景）の影響を受けます。</p>
+                        <p>通常のDOMではグローバルスタイルが適用されます。</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Custom Elementsを登録
+        customElements.define('my-isolated-component', MyIsolatedComponent);
+        customElements.define('my-normal-component', MyNormalComponent);
+    </script>
+</body>
+
+</html>

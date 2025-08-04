@@ -1,0 +1,33 @@
+{
+  "name": "web-components-webinar",
+  "version": "1.0.0",
+  "description": "Web Components webinar materials and examples",
+  "scripts": {
+    "react": "vite --config samples/multiple-frameworks/react-example/vite.config.ts --port=3001",
+    "vue": "vite --config samples/multiple-frameworks/vue-example/vite.config.ts --port=3002",
+    "vue_ce": "vite --config samples/vue-custom-element/vite.config.ts --port=3003"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "live-server": "^1.2.2",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {
+    "@angular/animations": "^18.0.0",
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/forms": "^18.0.0",
+    "@angular/platform-browser": "^18.0.0",
+    "@angular/platform-browser-dynamic": "^18.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "vue": "^3.5.18"
+  }
+}

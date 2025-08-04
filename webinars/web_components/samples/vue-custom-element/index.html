@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 defineCustomElement Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            margin: 2rem 0;
+        }
+
+        h1 {
+            color: #4fc08d;
+        }
+
+        .event-log {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+        }
+
+        .event-item {
+            padding: 0.5rem;
+            margin: 0.25rem 0;
+            background: white;
+            border-left: 3px solid #4fc08d;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Vue 3 defineCustomElement Example</h1>
+    <p>Vue 3の<code>defineCustomElement</code>を使用してWeb Componentsを作成する例です。</p>
+
+    <div class="container">
+        <h2>Vue Button Components</h2>
+        <vue-button label="プライマリボタン" variant="primary"></vue-button>
+        <vue-button label="セカンダリボタン" variant="secondary"></vue-button>
+        <vue-button label="カウンターボタン"></vue-button>
+    </div>
+
+    <div class="event-log" id="eventLog">
+        <h3>イベントログ</h3>
+        <div id="events">ボタンをクリックしてください...</div>
+    </div>
+
+    <script type="module">
+        // Vue Button Custom Elementをインポート
+        import './src/vue-button.ts';
+
+        // イベントリスナーを追加
+        const eventsDiv = document.getElementById('events');
+        let eventCount = 0;
+
+        document.addEventListener('click', (event) => {
+            if (event.target.tagName === 'VUE-BUTTON') {
+                eventCount++;
+                const detail = event.detail || {};
+                const message = `${eventCount}. ${detail.label || 'Button'} (${detail.variant || 'primary'}) - クリック回数: ${detail.count || 1}`;
+
+                const eventItem = document.createElement('div');
+                eventItem.className = 'event-item';
+                eventItem.textContent = message;
+
+                if (eventsDiv.children.length === 0 || eventsDiv.firstChild.textContent.includes('ボタンをクリック')) {
+                    eventsDiv.innerHTML = '';
+                }
+
+                eventsDiv.insertBefore(eventItem, eventsDiv.firstChild);
+
+                // 最新5件のみ保持
+                if (eventsDiv.children.length > 5) {
+                    eventsDiv.removeChild(eventsDiv.lastChild);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
