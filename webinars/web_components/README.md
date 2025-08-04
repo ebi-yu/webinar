@@ -2,7 +2,7 @@
 date : 2025-08-04
 ---
 
-# Web Componentsとは ~Web標準技術でコンポーネントを使用する~
+# Web Componentsとは : Web標準技術でコンポーネントを使用する
 
 今回のWebinarでは、Web Componentsの基本的な概念と実装方法について発表します。
 
@@ -45,7 +45,7 @@ ReactやVue.jsで実装されていたコンポーネントの機能がWeb Compo
 
 ## Web Componentsを使ってみる
 
-Web Componentsには、以下の3つの主要な技術が含まれています。
+WebComponentsには、以下の3つの主要な技術が含まれています。
 
 1. **Custom Elements**: 独自のHTML要素を定義するためのAPI
 2. **Shadow DOM**: コンポーネントのスタイルと構造をカプセル化するための技術
@@ -117,8 +117,6 @@ pnpm install
 pnpm vue
 # 実装例 : react
 pnpm react
-# 実装例 : vue custom element
-pnpm vue_ce
 ```
 
 ## vue3でのWeb Components
@@ -156,4 +154,4 @@ Vue3では、`defineCustomElement`を使用してVueコンポーネントをCust
 - Web Componentsは、再利用可能なコンポーネントを作成するための強力な技術
 - Web標準技術であり、フレームワークに依存しない
 - Custom Elements、Shadow DOM、HTML Templatesの3つの主要な技術を使用
-- 複数のフレームワークでの再利用が容易なため、異なるフレームワークを使っているようなプロジェクト間でのコンポーネントの共有が可能
+- 複数のフレームワークでの再利用が容易なため、異なるふれーむわプロジェクト間でのコンポーネントの共有が可能
