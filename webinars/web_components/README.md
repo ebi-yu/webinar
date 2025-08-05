@@ -15,7 +15,7 @@ ReactやVue.jsでも同様の機能を提供していますが、Web Components�
 
 <https://developer.mozilla.org/ja/docs/Web/API/Web_components>
 
-### Componentsの例
+### 補足 : Componentsの例
 
 - Vue.jsに`.vue`で定義されているもの
   - Main.vue
@@ -28,7 +28,15 @@ ReactやVue.jsでも同様の機能を提供していますが、Web Components�
 
 ReactやVue.jsで実装されていたコンポーネントの機能がWeb ComponentsでWeb標準として使用できるようになった
 
-### Web Componentsのメリット
+## Web Componentsの歴史
+
+- 2011年：Google ChromeチームがWeb Components概念を提案
+- 2013年：Polymer プロジェクト開始
+- 2014年：W3Cで標準化開始
+- 2018年：v1仕様完成・主要ブラウザでサポート完了
+- 2020年代：企業での実用化・普及
+
+## Web Componentsのメリット
 
 - **Web標準技術である**
   - Web Componentsはブラウザのネイティブ機能であるため、フレームワークなどを使用する必要がありません。
@@ -37,15 +45,35 @@ ReactやVue.jsで実装されていたコンポーネントの機能がWeb Compo
   - Web Componentsはフレームワークに依存しないため、異なるプロジェクトやフレームワーク間でコンポーネントを簡単に再利用できます。
   - 例 : Vue.js、React、Angularなど別のフレームワークで同じコンポーネントを使用する。
 
-### 注意点
+## Web Componentsの使いどころ
 
-- **古いブラウザではサポートされていない場合があります**
-  - Polyfillを使用することで、古いブラウザでもWeb Componentsを使用できるらしいです。
-    - <https://github.com/webcomponents/polyfills>
+- **マイクロフロントエンド構成**
+  - 各UIを独立したコンポーネントとして開発・デプロイできる
+  - フレームワークに依存せず、React/Vue/Angular混在でも利用可能
+- **CMSや低コード環境との統合**
+  - HTMLタグとして埋め込むだけで使用できる
+  - ノーコードツールやCMSでも導入が簡単
+- **Edge環境・軽量Webアプリ**
+  - 仮想DOM不要で動作が軽快
+  - 通信制限のある環境や性能制約のある端末でも有利
+
+## 補足 : React/Vue と Web Components の比較
+
+| 比較項目          | React/Vue                                    | Web Components                  |
+| ------------- | -------------------------------------------- | ------------------------------- |
+| **基本構造**      | JS/TSで定義された独自コンポーネント                         | ブラウザ標準のカスタム要素（`<my-tag>`）       |
+| **描画エンジン**    | 仮想DOMで差分検知 → 実DOMへ更新                         | 直接DOMを操作       |
+| **スタイルのスコープ** | CSS Modules / Scoped CSS / styled-components | Shadow DOMにより**完全にカプセル化されたCSS** |
+| **再利用性**      | 同一フレームワーク内で再利用                               | フレームワークを問わず再利用可能                |
+| **依存関係**      | ライブラリ（React, Vue）のランタイムに依存                   | **ブラウザだけで動作（JS標準API）**          |
+| **状態管理**      | useState, ref, Vueのdata等（内部完結）               | 自前で書く必要あり（`this.state = ...`）   |
+| **イベント連携**    | onClick, v-on 等で簡易に記述                        | `dispatchEvent()` でカスタムイベント発行   |
+| **学習コスト**     | JSXやVueテンプレートなど独自構文が必要                       | 原則HTML/JSベース、学習コストは比較的低い        |
+| **対応ブラウザ**    | 全主要ブラウザ対応（JSランタイム必要）                         | 全主要ブラウザが**ネイティブ対応済（2018〜）**      |
 
 ## Web Componentsを使ってみる
 
-WebComponentsには、以下の3つの主要な技術が含まれています。
+Web Componentsには、以下の3つの主要な技術が含まれています。
 
 1. **Custom Elements**: 独自のHTML要素を定義するためのAPI
 2. **Shadow DOM**: コンポーネントのスタイルと構造をカプセル化するための技術
@@ -117,6 +145,8 @@ pnpm install
 pnpm vue
 # 実装例 : react
 pnpm react
+# 実装例 : vue custom element
+pnpm vue_ce
 ```
 
 ## vue3でのWeb Components
@@ -154,4 +184,4 @@ Vue3では、`defineCustomElement`を使用してVueコンポーネントをCust
 - Web Componentsは、再利用可能なコンポーネントを作成するための強力な技術
 - Web標準技術であり、フレームワークに依存しない
 - Custom Elements、Shadow DOM、HTML Templatesの3つの主要な技術を使用
-- 複数のフレームワークでの再利用が容易なため、異なるふれーむわプロジェクト間でのコンポーネントの共有が可能
+- 複数のフレームワークでの再利用が容易なため、異なるフレームワークを使っているプロジェクト間でのコンポーネントの共有が可能
