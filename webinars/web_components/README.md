@@ -2,7 +2,6 @@
 date : 2025-08-04
 ---
 
-
 # Web Componentsとは : Web標準技術でコンポーネントを使用する
 
 今回のWebinarでは、Web Componentsの基本的な概念と実装方法について発表します。
