@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shadow DOM基本例</title>
+    <title>Shadow DOM - スタイルの分離</title>
     <style>
         /* グローバルスタイル（Shadow DOM内には影響しない） */
         body {
@@ -25,23 +25,22 @@
 </head>
 
 <body>
-    <h1>Shadow DOM基本例</h1>
+    <h1>Shadow DOM - スタイルの分離</h1>
 
+    <!-- 通常のDOM要素（グローバルスタイルが適用される） -->
     <p class="highlight">これは通常のDOM要素です。グローバルスタイルが適用されています。</p>
 
+    <!-- Shadow DOMを持つCustom Element -->
     <h2>Shadow DOMの例</h2>
     <p>以下のCustom ElementはShadow DOMを使用しているため、外部のスタイルの影響を受けません：</p>
-
-    <!-- Shadow DOMを持つCustom Element -->
     <my-isolated-component></my-isolated-component>
 
-    <p class="highlight">再び通常のDOM要素です。グローバルスタイルが適用されています。</p>
-
+    <!-- 比較用：Shadow DOMを使わないCustom Element -->
     <h2>Shadow DOMなしとの比較</h2>
     <p>比較のため、Shadow DOMを使わないCustom Elementも配置します：</p>
-
-    <!-- Shadow DOMを使わないCustom Element -->
     <my-normal-component></my-normal-component>
+
+    <p class="highlight">再び通常のDOM要素です。グローバルスタイルが適用されています。</p>
 
     <script>
         // Shadow DOMを使用するCustom Element
@@ -49,7 +48,7 @@
             constructor() {
                 super();
 
-                // Shadow DOMを作成（カプセル化される）
+                // Shadow DOMを作成（スタイルがカプセル化される）
                 this.attachShadow({ mode: 'open' });
 
                 // Shadow DOM内にスタイルとコンテンツを設定

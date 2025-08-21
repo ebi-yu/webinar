@@ -10,7 +10,7 @@
 <body>
     <h1>HTML Templates基本例</h1>
 
-    <!-- テンプレートを定義（ブラウザには表示されない） -->
+    <!-- テンプレート定義（ブラウザには表示されない） -->
     <template id="card-template">
         <div class="card">
             <h3 class="card-title">
@@ -55,20 +55,11 @@
         </style>
     </template>
 
-    <div style="display: flex;" id="cards-container"></div>
+    <!-- テンプレートから生成されるカード -->
+    <h2>テンプレートから生成されたカード</h2>
+    <div style="display: flex; flex-wrap: wrap;" id="cards-container"></div>
 
-    <h2>cloneNode(false) vs cloneNode(true)の比較</h2>
-    <div id="shallow-clone-result"
-        style="padding: 15px; border: 1px solid #ff6b6b; margin: 10px 0; border-radius: 5px; background-color: #ffe0e0;">
-        <h4>cloneNode(false) - 浅いコピーの結果:</h4>
-        <div id="shallow-content"></div>
-    </div>
-    <div id="deep-clone-result"
-        style="padding: 15px; border: 1px solid #4ecdc4; margin: 10px 0; border-radius: 5px; background-color: #e0f7f7;">
-        <h4>cloneNode(true) - 深いコピーの結果:</h4>
-        <div id="deep-content"></div>
-    </div>
-
+    <!-- Custom Elementとの組み合わせ例 -->
     <h2>Custom Elementでの使用</h2>
     <my-card>
         <span slot="title">Custom Elementカード</span>
@@ -77,12 +68,9 @@
     </my-card>
 
     <script>
-        // テンプレートを使用してカードを作成する関数
+        // テンプレートを使用してカードを作成
         function createCard(title, content, footer) {
-            // テンプレートを取得
             const template = document.getElementById('card-template');
-
-            // テンプレートの内容をクローン
             const cardElement = template.content.cloneNode(true);
 
             // スロットに内容を設定
@@ -93,15 +81,15 @@
             return cardElement;
         }
 
-        // テンプレートを使用してカードを生成
-        const cardsContainer = document.getElementById('cards-container');
-
+        // カードデータ
         const cards = [
             { title: 'Webinar案内', content: 'Web Componentsについて学びましょう', footer: '2024年8月5日開催' },
             { title: 'HTML Templates', content: '<template>タグで再利用可能なテンプレートを定義できます', footer: 'Web Components技術' },
             { title: 'スロット機能', content: '<slot>タグで外部からコンテンツを挿入できます', footer: 'カスタマイズ可能' }
         ];
 
+        // カードを生成してDOMに追加
+        const cardsContainer = document.getElementById('cards-container');
         cards.forEach(card => {
             const cardElement = createCard(card.title, card.content, card.footer);
             cardsContainer.appendChild(cardElement);
@@ -112,7 +100,7 @@
             constructor() {
                 super();
 
-                // Shadow DOMを作成（HTMLテンプレートとの組み合わせ例）
+                // Shadow DOMを作成
                 this.attachShadow({ mode: 'open' });
 
                 // テンプレートから内容をクローン
@@ -123,29 +111,6 @@
 
         // Custom Elementを登録
         customElements.define('my-card', MyCard);
-
-        // cloneNode(false) vs cloneNode(true)の実際の動作を示す
-        function demonstrateCloneNode() {
-            const template = document.getElementById('card-template');
-
-            // cloneNode(false) - 浅いコピー（子要素なし）
-            const shallowClone = template.content.cloneNode(false);
-            console.log("浅いコピーのため、子要素が取得できない", shallowClone.querySelector('slot[name="title"]'));
-            console.log("浅いコピーのため、子要素が取得できない", shallowClone.querySelector('slot[name="content"]'));
-            console.log("浅いコピーのため、子要素が取得できない", shallowClone.querySelector('slot[name="footer"]'));
-            document.getElementById('shallow-content').appendChild(shallowClone);
-
-            // cloneNode(true) - 深いコピー（子要素あり）
-            const deepClone = template.content.cloneNode(true);
-            // スロットに内容を設定
-            deepClone.querySelector('slot[name="title"]').textContent = 'cloneNode(true)で作成';
-            deepClone.querySelector('slot[name="content"]').textContent = '子要素も含めてコピーされるため、正常に表示されます';
-            deepClone.querySelector('slot[name="footer"]').textContent = '深いコピー成功';
-            document.getElementById('deep-content').appendChild(deepClone);
-        }
-
-        // ページ読み込み後に実行
-        demonstrateCloneNode();
     </script>
 </body>
 
