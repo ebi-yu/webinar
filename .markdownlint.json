@@ -1,3 +1,6 @@
 {
-    "no-inline-html": false
+  "no-inline-html": false,
+  "line-length": false,
+  "single-h1": false,
+  "heading-increment": false
 }
