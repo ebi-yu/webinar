@@ -2,8 +2,7 @@
 marp: true
 theme: classmethod
 paginate: true
-title: サンプルスライド
-description: サンプルスライドです
+title: Transformers.jsを使ってWebブラウザ上でAIモデルを動かしてみた
 ---
 
 <script type="module">
