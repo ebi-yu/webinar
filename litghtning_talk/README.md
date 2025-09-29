@@ -18,4 +18,8 @@ Lightning Talkで話す資料をまとめるためのディレクトリです。
 
 classmethodのMarpテーマを利用しています。
 
+- VsCode Settingsの`Marp :themes`に以下のURLを追加してください。
+  - <https://classmethod.github.io/classmethod-marp-theme/classmethod-theme.css>
+- VsCode Settingsの`Marp :html`を`All`に設定してください。
+
 <https://github.com/classmethod/classmethod-marp-theme/tree/main>
