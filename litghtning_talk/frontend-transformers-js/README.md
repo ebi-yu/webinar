@@ -19,7 +19,7 @@ mermaid.initialize({ startOnLoad: true });
 <!-- _class: title -->
 <!-- _paginate: false -->
 
-![classmethod-logo w:400px](../lt-logo-bk.png)
+![lg-logo w:400px](../lt-logo-bk.png)
 
 # Transformers.jsを使ってWebブラウザ上でAIモデルを動かしてみた
 
