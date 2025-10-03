@@ -2,7 +2,7 @@
 marp: true
 theme: classmethod
 paginate: true
-title: サンプルタイトル
+title: Inner Sourceのススメ
 ---
 
 <script type="module">
