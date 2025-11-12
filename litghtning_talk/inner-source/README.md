@@ -128,7 +128,7 @@ mermaid.initialize({ startOnLoad: true });
 ---
 
 <div style="display: flex; height: 50vh; flex-direction: column; justify-content: center; align-items: center; margin: auto; text-align: center;">
-<img src="https://innersourcecommons.org/images/about/announcements/2025-06-new-members-announcement.png" alt="innersourcecommons-new-members-announcement" style="max-width: 100%; height: auto;">
+<img src="https://innersourcecommons.org/images/about/announcements/2025-06-new-members-announcement.png" alt="innersourcecommons-new-members-announcement" style="max-width: 90%; height: auto;">
 </div>
 
 ---
@@ -265,20 +265,25 @@ InnerSourceを導入していることは **「技術的に先進的な企業で
 
 #### 権限の明確化
 
-InnerSourceを導入するためには **「誰がどのコードにアクセスできるか」** を明確にする必要がある。これにより **「セキュリティリスクを最小化」** できる。
+InnerSourceを導入するためには **「誰がどのコードにアクセスできるか」** を明確にする必要があります。これにより **「セキュリティリスクを最小化」** できます。
+
+➡ 現在InnerSourceチームで対応中
 
 <br>
 
 #### ドキュメントの整備
 
-チーム外の人が理解できるように **「READMEやCONTRIBUTINGなどのドキュメントを整備する」** 必要がある。また、IssueやPull Requestのテンプレートも用意する必要がある。
+チーム外の人が理解できるように **「READMEやCONTRIBUTINGなどのドキュメントを整備する」** 必要があります。
+
+➡ 簡単にドキュメントを生成できるAIプロンプトを作りました!
 
 <br>
 
 #### チーム外のタスクを行うことを許容する
 
-InnerSourceを導入するためには自分の本業以外のタスクを行うことを許容する必要がある。
-プロジェクトやチーム内だけではなく **「組織全体の目標を達成するために貢献する」** 文化や **「心理的安全性」** を醸成する必要がある。
+InnerSourceを導入するためには自分の本業以外のタスクを行うことを許容する必要があります。
+
+➡ 社内文化の醸成が必要
 
 ---
 
@@ -353,14 +358,6 @@ InnerSourceを導入するためには自分の本業以外のタスクを行う
 
 ---
 
-# 創始者の方が来日されたときのレポ
-
-<img src="https://media.connpass.com/thumbs/c2/e9/c2e97e0df7a21b4478b8975a75f02833.png" alt="InnerSourceCommons来日レポート" style="width:800px;">
-
-<https://zenn.dev/ymd65536/articles/inner_source_commons#%E3%82%A4%E3%83%B3%E3%83%8A%E3%83%BC%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A8%E3%81%AF>
-
----
-
 # 最後に
 
 > InnerSource は狭義も広義も「協働モデル」です。 すなわち InnerSource の実践を通して組織内の協働を推し進めたい意図があるわけです。
@@ -377,7 +374,7 @@ InnerSourceを導入するためには自分の本業以外のタスクを行う
 
 ---
 
-# 本当の最後に
+# チーム募集中
 
 <div style="display: flex; height: 60vh; gap: 50px; flex-direction: column; justify-content: center; align-items: center; margin: auto; text-align: center;">
 <span style="font-size: 42px" >InnerSource導入チームのメンバーを募集中!</span>
@@ -392,3 +389,21 @@ InnerSourceを導入するためには自分の本業以外のタスクを行う
 ![classmethod-logo w:400px](../lt-logo-bk.png)
 
 # ご清聴ありがとうございました
+
+---
+
+# 創始者の方が来日されたときのレポ
+
+<img src="https://media.connpass.com/thumbs/c2/e9/c2e97e0df7a21b4478b8975a75f02833.png" alt="InnerSourceCommons来日レポート" style="width:800px;">
+
+<https://zenn.dev/ymd65536/articles/inner_source_commons#%E3%82%A4%E3%83%B3%E3%83%8A%E3%83%BC%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%A8%E3%81%AF>
+
+---
+
+# Inner Source Summit 2025
+
+24時間オンラインで開催される(!?)セミナーイベント
+
+<img src="https://innersourcecommons.org/images/events/Summit2025.png" alt="innersource-commons-summit-2025" style="width:800px;">
+
+<https://innersourcecommons.org/ja/events/isc-2025/>
