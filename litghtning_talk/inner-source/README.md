@@ -142,10 +142,8 @@ mermaid.initialize({ startOnLoad: true });
 <br>
 
 <div style="display: flex; flex-direction: column; justify-content: left; align-items: left; text-align: left; ">
-<p>● コードのメンテナンスがされてない...</p>
-<p>● ドキュメントが整備されていない...</p>
-<p>● 特定の人しか解読できないプロジェクト...</p>
 <p>● チーム間の壁が高くてコラボレーションできない...</p>
+<p>● 他のチームの開発が律速段階になっている...</p>
 <br>
 </div>
 
@@ -305,21 +303,19 @@ InnerSourceを導入するためには自分の本業以外のタスクを行う
 各チームが同様の機能を別々に開発し、重複・非効率が発生。  
 共通基盤の共有と協働が必要に。
 
-<br>
-
 #### 取組内容  
 
 - 重複機能を共通モジュール化（マニフェスト生成・Git操作・Slack通知）  
 - Inner Source 文化で全社的に公開・貢献可能に  
 - テスト・品質ゲートで信頼性確保（例：SonarQube）
 
-<br>
-
 #### 効果  
 
 - 開発速度向上・再利用促進  
 - コード品質と一貫性向上  
 - チーム間コラボが活発化  
+
+<https://engineering.salesforce.com/stronger-together-an-inner-sourcing-case-study-b616ff5c1923/>
 
 ---
 
@@ -330,20 +326,18 @@ InnerSourceを導入するためには自分の本業以外のタスクを行う
 - チームごとに独立開発しており、**依頼集中や重複作業**が発生。  
 - GitHub Organization 全体で見ても、**横断的なコラボが少なかった**。
 
-<br>
-
 #### 取組内容
 
 - 一部リポジトリで**README整備・Lint/Test導入・good first issue設置**を試験導入。  
 - 社内向け「ポータル／ガイドライン」で**貢献しやすい仕組み**を整備。  
 - **ビジネス部門もPR可能**にし、部門を越えた協働を促進。
 
-<br>
-
 #### 効果
 
 - 実験中に複数メンバーがPR・Issueで参加し、**非エンジニアも貢献可能に**。  
 - **属人化の解消・知見共有・効率化**への手応えを確認。
+
+<https://engineering.nifty.co.jp/tag/innersource>
 
 ---
 
